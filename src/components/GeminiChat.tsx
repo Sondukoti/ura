@@ -118,23 +118,25 @@ const GeminiChat = ({ isOpen, onClose, apiKey }: GeminiChatProps) => {
   const handleFileUpload = async (uploadedFiles: File[]) => {
     setIsUploading(true)
     try {
-      const attachments = []
+      const attachments: Array<{
+        data: Uint8Array;
+        mimeType: string;
+      }> = [];
+
       for (const file of uploadedFiles) {
         if (file.type.startsWith('image/')) {
           // Handle image files
           const imageData = await readFileAsBase64(file)
           attachments.push({
-            type: 'image',
             data: imageData,
-            name: file.name
+            mimeType: 'image'
           })
         } else if (file.type === 'application/pdf') {
           // Handle PDF files
           const pdfText = await extractTextFromPDF(file)
           attachments.push({
-            type: 'pdf',
             data: pdfText,
-            name: file.name
+            mimeType: 'pdf'
           })
         }
       }
