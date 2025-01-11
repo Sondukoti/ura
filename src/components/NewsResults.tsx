@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
-import styles from '@/styles/Dashboard.module.css';
+import { type ReactElement } from 'react';
+import Image from 'next/image';
+import styles from '@/styles/NewsResults.module.css';
 
-interface NewsArticle {
+interface Article {
   title: string;
   description: string;
   url: string;
@@ -13,11 +14,11 @@ interface NewsArticle {
 }
 
 interface NewsResultsProps {
-  articles: NewsArticle[];
+  articles: Article[];
   loading: boolean;
 }
 
-const NewsResults: FC<NewsResultsProps> = ({ articles, loading }) => {
+const NewsResults = ({ articles, loading }: NewsResultsProps): ReactElement => {
   if (loading) {
     return (
       <div className={styles.loadingState}>
@@ -30,10 +31,18 @@ const NewsResults: FC<NewsResultsProps> = ({ articles, loading }) => {
   return (
     <div className={styles.newsGrid}>
       {articles.map((article, index) => (
-        <div key={index} className={styles.newsCard}>
+        <div key={`${article.title}-${index}`} className={styles.newsCard}>
           {article.urlToImage && (
             <div className={styles.newsImage}>
-              <img src={article.urlToImage} alt={article.title} />
+              <Image
+                src={article.urlToImage}
+                alt={article.title}
+                width={400}
+                height={200}
+                layout="responsive"
+                objectFit="cover"
+                priority={index < 4} // Load first 4 images immediately
+              />
             </div>
           )}
           <div className={styles.newsContent}>
