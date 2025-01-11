@@ -4,14 +4,17 @@ import { GeminiService } from '@/utils/gemini'
 import { FileUploader } from './FileUploader'
 import { readFileAsBase64, extractTextFromPDF } from '@/utils/fileUtils'
 
+interface FileAttachment {
+  type: string
+  data: Uint8Array
+  mimeType: string
+  name: string
+}
+
 interface Message {
   role: 'user' | 'assistant'
   content: string
-  attachments?: {
-    type: string
-    url: string
-    name: string
-  }[]
+  attachments?: FileAttachment[]
 }
 
 interface GeminiChatProps {
@@ -119,25 +122,26 @@ const GeminiChat = ({ isOpen, onClose, apiKey }: GeminiChatProps) => {
   const handleFileUpload = async (uploadedFiles: File[]) => {
     setIsUploading(true)
     try {
-      const attachments: Array<{
-        data: Uint8Array;
-        mimeType: string;
-      }> = [];
+      const attachments: FileAttachment[] = [];
 
       for (const file of uploadedFiles) {
         if (file.type.startsWith('image/')) {
           // Handle image files
           const imageData = await readFileAsBase64(file)
           attachments.push({
+            type: 'image',
             data: imageData,
-            mimeType: 'image'
+            mimeType: file.type,
+            name: file.name
           })
         } else if (file.type === 'application/pdf') {
           // Handle PDF files
           const pdfText = await extractTextFromPDF(file)
           attachments.push({
+            type: 'pdf',
             data: pdfText,
-            mimeType: 'pdf'
+            mimeType: file.type,
+            name: file.name
           })
         }
       }

@@ -1,5 +1,12 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
+interface FileAttachment {
+  type: string;
+  data: Uint8Array;
+  mimeType: string;
+  name: string;
+}
+
 export class GeminiService {
   private ai: GoogleGenerativeAI | null = null;
   
@@ -42,7 +49,7 @@ export class GeminiService {
     }
   }
 
-  async chat(message: string) {
+  async chat(message: string): Promise<string> {
     try {
       if (!this.ai) throw new Error('Gemini AI not initialized');
       
@@ -64,5 +71,10 @@ export class GeminiService {
       console.error('Gemini chat error:', error);
       throw error;
     }
+  }
+
+  async analyzeFiles(attachments: FileAttachment[]): Promise<string> {
+    // Implementation
+    return ''
   }
 } 
