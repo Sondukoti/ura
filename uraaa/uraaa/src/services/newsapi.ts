@@ -1,0 +1,1 @@
+export { searchNews, getLatestNews } from './api/newsapi/endpoints';

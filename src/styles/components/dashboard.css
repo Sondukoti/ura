@@ -1,0 +1,100 @@
+/* Dashboard Layout */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.bg-black {
+  background-color: var(--black);
+}
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid rgba(188, 19, 254, 0.1);
+}
+
+/* Content Sections */
+.section-card {
+  background: rgba(28, 28, 30, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(188, 19, 254, 0.1);
+  transition: all 0.3s ease;
+}
+
+.section-card:hover {
+  border-color: rgba(188, 19, 254, 0.3);
+  box-shadow: 0 0 30px rgba(188, 19, 254, 0.1);
+}
+
+/* Search Input */
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 16px 48px 16px 20px;
+  background: rgba(28, 28, 30, 0.8);
+  border: 1px solid rgba(188, 19, 254, 0.2);
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: rgb(188, 19, 254);
+  box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
+}
+
+.search-button {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(188, 19, 254, 0.6);
+  transition: all 0.3s ease;
+}
+
+.search-button:hover {
+  color: rgb(188, 19, 254);
+}
+
+/* Results Tabs */
+.results-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Latest News */
+.latest-news {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Buttons */
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .max-w-7xl {
+    padding: 0 16px;
+  }
+  
+  .section-card {
+    padding: 16px;
+  }
+} 

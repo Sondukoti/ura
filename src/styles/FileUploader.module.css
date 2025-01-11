@@ -1,0 +1,27 @@
+.uploaderWrapper {
+  position: relative;
+}
+
+.dropzone {
+  cursor: pointer;
+}
+
+.uploadButton {
+  width: 36px;
+  height: 36px;
+  background: rgba(188, 19, 254, 0.1);
+  border: 1px solid rgba(188, 19, 254, 0.2);
+  border-radius: 8px;
+  color: #BC13FE;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.uploadButton:hover {
+  background: rgba(188, 19, 254, 0.15);
+  border-color: rgba(188, 19, 254, 0.3);
+} 
