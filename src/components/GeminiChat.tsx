@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import styles from '@/styles/GeminiChat.module.css'
 import { GeminiService } from '@/utils/gemini'
 import { FileUploader } from './FileUploader'
+import { readFileAsBase64, extractTextFromPDF } from '@/utils/fileUtils'
 
 interface Message {
   role: 'user' | 'assistant'
